@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List of Admins</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="card p-4">
+    <h2 class="text-center mb-4">List of Admins</h2>
+
+    <!-- Add New Admin Button -->
+    <a class="btn btn-success mb-3" th:href="@{'/adminForm'}">Add New Admin</a>
+
+    <!-- Admins Table -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Iterate over the list of admins and display their information -->
+      <tr th:each="admin : ${admins}">
+        <td th:text="${admin.adminId}"></td>
+        <td th:text="${admin.firstName}"></td>
+        <td th:text="${admin.Email}"></td>
+        <td th:text="${admin.password}"></td>
+        <td>
+          <!-- Edit Button -->
+          <a class="btn btn-primary btn-sm"
+             th:href="@{'/adminEdit/' + ${admin.adminId}}">Edit</a>
+
+          <!-- Delete Button -->
+          <a class="btn btn-danger btn-sm"
+             th:href="@{'/adminDelete/' + ${admin.adminId}}"
+             onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,9 +1,6 @@
 package com.auca.kigalimotaricoperative.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,6 +8,7 @@ import java.time.LocalDate;
 @Entity
 public class Imisanzu {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer imisanzuId;
     private Double amount;
     private LocalDate imisanzuDate;

@@ -19,8 +19,8 @@ public class MotariService {
         return motariRepository.save(motari);
     }
 
-    public Optional<Motari> getMotariById(String motariId) {
-        return motariRepository.findById(motariId);
+    public Motari getMotariById(String motariId) {
+        return motariRepository.findById(motariId).get();
     }
 
     public List<Motari> getAllMotaris() {

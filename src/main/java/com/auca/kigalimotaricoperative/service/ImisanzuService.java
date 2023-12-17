@@ -19,8 +19,8 @@ public class ImisanzuService {
         return imisanzuRepository.save(imisanzu);
     }
 
-    public Optional<Imisanzu> getImisanzuById(Integer imisanzuId) {
-        return imisanzuRepository.findById(imisanzuId);
+    public Imisanzu getImisanzuById(Integer imisanzuId) {
+        return imisanzuRepository.findById(imisanzuId).get();
     }
 
     public List<Imisanzu> getAllImisanzus() {

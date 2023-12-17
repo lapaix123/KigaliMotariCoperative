@@ -19,8 +19,8 @@ public class AdminService {
         return dao.save(admin);
     }
 
-    public Optional<Admin> getAdminById(Integer adminId) {
-        return dao.findById(adminId);
+    public Admin getAdminById(Integer adminId) {
+        return dao.findById(adminId).get();
     }
 
     public List<Admin> getAllAdmins() {
