@@ -9,7 +9,7 @@
           crossorigin="anonymous">
 </head>
 <body>
-
+<th:block th:include="navBar1"></th:block>
 <div class="container mt-5">
     <div class="card p-4">
         <h2 class="text-center mb-4">List of Imisanzu</h2>
@@ -34,7 +34,7 @@
                 <td th:text="${imisanzu.imisanzuId}"></td>
                 <td th:text="${imisanzu.amount}"></td>
                 <td th:text="${imisanzu.imisanzuDate}"></td>
-                <td th:text="${imisanzu.motari.firstName} ${imisanzu.motari.lastName}"></td>
+                <td th:text="${imisanzu.motari.firstName +''+imisanzu.motari.lastName}"></td>
                 <td>
                     <!-- Edit Button -->
                     <a class="btn btn-primary btn-sm"

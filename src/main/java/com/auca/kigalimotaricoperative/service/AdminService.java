@@ -34,4 +34,11 @@ public class AdminService {
     public void deleteAdmin(Integer adminId) {
        dao.deleteById(adminId);
     }
+    // Admin login method
+    public Optional<Admin> loginAdmin(String email, String password) {
+        // Implement your logic to authenticate admin
+        // For example, you can check if the provided credentials match an admin in the database
+        // and return the authenticated admin if successful
+        return dao.findByEmailAndPassword(email, password);
+    }
 }

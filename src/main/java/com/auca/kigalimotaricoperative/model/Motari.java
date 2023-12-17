@@ -1,9 +1,6 @@
 package com.auca.kigalimotaricoperative.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -12,11 +9,13 @@ import java.util.List;
 @Entity
 public class Motari {
     @Id
-    private String motariId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer motariId;
     private String plateNumber;
     private String firstName;
     private String lastName;
     private String phone;
+    private String email;
     private String address;
     @OneToOne(mappedBy = "motari")
     private User user;

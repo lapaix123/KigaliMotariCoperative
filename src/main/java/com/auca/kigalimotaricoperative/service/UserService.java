@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserDao userRepository;
 
@@ -34,5 +35,9 @@ public class UserService {
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
     }
-}
 
+    // Login method using Motari phone number and password
+    public Optional<User> loginMotari(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+}

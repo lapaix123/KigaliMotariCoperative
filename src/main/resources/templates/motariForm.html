@@ -9,7 +9,7 @@
           crossorigin="anonymous">
 </head>
 <body>
-
+<th:block th:include="navBar1"></th:block>
 <div class="container mt-5">
     <div class="card p-4">
         <h2 class="text-center mb-4">Motari Form</h2>
@@ -18,8 +18,8 @@
         <form action="/newMotari" method="post">
 
             <div class="form-group">
-                <label for="motariId">Motari ID:</label>
-                <input type="text" class="form-control" id="motariId" name="motariId" th:field="${motari.motariId}" required>
+
+                <input type="hidden" class="form-control" id="motariId" name="motariId" th:field="${motari.motariId}" required>
             </div>
 
             <div class="form-group">
@@ -35,6 +35,10 @@
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
                 <input type="text" class="form-control" id="lastName" name="lastName" th:field="${motari.lastName}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Phone:</label>
+                <input type="email" class="form-control" id="email" name="phone" th:field="${motari.email}" required>
             </div>
 
             <div class="form-group">

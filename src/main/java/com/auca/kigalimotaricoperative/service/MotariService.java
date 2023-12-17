@@ -19,7 +19,7 @@ public class MotariService {
         return motariRepository.save(motari);
     }
 
-    public Motari getMotariById(String motariId) {
+    public Motari getMotariById(Integer motariId) {
         return motariRepository.findById(motariId).get();
     }
 
@@ -31,7 +31,7 @@ public class MotariService {
         motariRepository.save(motari);
     }
 
-    public void deleteMotari(String motariId) {
+    public void deleteMotari(Integer motariId) {
         motariRepository.deleteById(motariId);
     }
 }
