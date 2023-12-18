@@ -11,12 +11,18 @@ import java.util.Optional;
 @Service
 public class MotariService {
     @Autowired
+    private EmailService emailService;
+    @Autowired
     private MotariDao motariRepository;
 
     // CRUD operations for Motari entity
 
     public Motari createMotari(Motari motari) {
-        return motariRepository.save(motari);
+      Motari motari1=   motariRepository.save(motari);
+      if(motari1 != null){
+          emailService.sendEmail(motari1);
+      }
+        return motari1;
     }
 
     public Motari getMotariById(Integer motariId) {

@@ -56,6 +56,7 @@ public class LoginController {
 
                 Motari motari1= motariService.findByEmail(email);
                 Imisanzu imisanzu = new Imisanzu();
+                model.addAttribute("found",motari1);
                 List<Imisanzu> imisanzus = imisanzuService.findImisanzuByMotari(motari1.getMotariId());
                 if(imisanzus != null) {
                     model.addAttribute("imisanzu", imisanzu);

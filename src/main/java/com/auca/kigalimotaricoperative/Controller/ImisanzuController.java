@@ -43,6 +43,11 @@ public class ImisanzuController {
         Imisanzu savedImisanzu = imisanzuService.createImisanzu(imisanzu);
         return "redirect:/imisanzu";
     }
+    @PostMapping("/addImisanzuMotari")
+    public String newImisanzuMotari(Imisanzu imisanzu, Model model) {
+        Imisanzu savedImisanzu = imisanzuService.createImisanzu(imisanzu);
+        return "redirect:/motariHomePage";
+    }
     @Autowired
 private MotariService motariService;
     @GetMapping("/imisanzuForm")

@@ -120,19 +120,7 @@ public class MotariController {
 
 
     }
-    @GetMapping("/motariHomePage")
-    public String motariPage(Model model,HttpSession session){
-       String email=(String) session.getAttribute("email");
-        Motari motari1= motariService.findByEmail(email);
-        Imisanzu imisanzu = new Imisanzu();
-        List<Imisanzu> imisanzus = imisanzuService.findImisanzuByMotari(motari1.getMotariId());
-        if(imisanzus != null) {
-            model.addAttribute("imisanzu", imisanzu);
-            model.addAttribute("imisanzus", imisanzus);
-        }
 
-        return "motariHomePage";
-    }
 
 
 
