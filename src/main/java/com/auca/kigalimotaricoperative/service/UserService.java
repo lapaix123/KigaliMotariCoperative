@@ -1,5 +1,6 @@
 package com.auca.kigalimotaricoperative.service;
 
+import com.auca.kigalimotaricoperative.model.Motari;
 import com.auca.kigalimotaricoperative.model.User;
 import com.auca.kigalimotaricoperative.repostory.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,14 @@ public class UserService {
     // Login method using Motari phone number and password
     public Optional<User> loginMotari(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
+    }
+
+    public User findUserById(Integer id){
+        try {
+            return userRepository.findByMotari(id);
+        }catch (Exception e){
+            return null;
+        }
+
     }
 }

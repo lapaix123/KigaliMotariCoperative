@@ -2,7 +2,9 @@ package com.auca.kigalimotaricoperative.Controller;
 
 import com.auca.kigalimotaricoperative.model.Admin;
 import com.auca.kigalimotaricoperative.model.Motari;
+import com.auca.kigalimotaricoperative.model.User;
 import com.auca.kigalimotaricoperative.service.MotariService;
+import com.auca.kigalimotaricoperative.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -82,4 +84,38 @@ public class MotariController {
         }
 
     }
+
+    ////////////////////////// new motari form //////////////////////////
+    @GetMapping("/motariUserForm")
+    public String newMotariUser(Model model){
+        model.addAttribute("user",new User());
+        return "newMotariUser";
+
+    }
+    @Autowired
+    private UserService userService;
+    @PostMapping("/newUser")
+    public String newUser(User user,Model model){
+        Motari motari= motariService.getMotariById(user.getMotari().getMotariId());
+        if(motari != null){
+            User newUser= userService.findUserById(user.getMotari().getMotariId());
+            if(newUser != null){
+                model.addAttribute("message","Motari has account Contact adminstrator");
+                return "newMotariUser";
+
+            }  else {
+                userService.createUser(user);
+                return "redirect:/";
+            }
+        }else {
+            model.addAttribute("message","Motari Not found");
+            return "newMotariUser";
+
+        }
+
+
+
+    }
+
+
 }

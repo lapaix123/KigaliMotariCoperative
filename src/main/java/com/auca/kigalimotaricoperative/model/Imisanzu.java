@@ -15,4 +15,9 @@ public class Imisanzu {
     @ManyToOne
     @JoinColumn(name="motariId")
     private Motari motari;
+
+    @PrePersist
+    public void prePersist() {
+        this.imisanzuDate = LocalDate.now();
+    }
 }

@@ -34,4 +34,8 @@ public class ImisanzuService {
     public void deleteImisanzu(Integer imisanzuId) {
         imisanzuRepository.deleteById(imisanzuId);
     }
+
+    public List<Imisanzu> findImisanzuByMotari(Integer motariId) {
+      return  imisanzuRepository.findIminzuByMotari(motariId);
+    }
 }

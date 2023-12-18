@@ -20,10 +20,15 @@ public class MotariService {
     }
 
     public Motari getMotariById(Integer motariId) {
-        return motariRepository.findById(motariId).get();
+        try{
+            return motariRepository.findById(motariId).get();
+        }catch (Exception e){
+            return null;
+        }
+
     }
 
-    public List<Motari> getAllMotaris() {
+    public  List<Motari> getAllMotaris() {
         return motariRepository.findAll();
     }
 
@@ -33,5 +38,10 @@ public class MotariService {
 
     public void deleteMotari(Integer motariId) {
         motariRepository.deleteById(motariId);
+    }
+
+    public Motari findByEmail(String email) {
+        return motariRepository.findByEmail(email);
+
     }
 }
