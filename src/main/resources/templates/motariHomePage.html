@@ -9,13 +9,25 @@
           crossorigin="anonymous">
 </head>
 <body>
-<th:block th:include="navBar1"></th:block>
 <div class="container mt-5">
     <div class="card p-4">
+        <!-- Sign Out Button -->
+        <a class="btn btn-danger mb-3" th:href="@{/logout}">Sign Out</a>
         <h2 class="text-center mb-4">List of Imisanzu</h2>
 
-        <!-- New Imisanzu Button -->
-        <a class="btn btn-success mb-3" th:href="@{/imisanzuForm}">New Imisanzu</a>
+        <!-- Add Imisanzu Form -->
+        <form action="/addImisanzu" method="post">
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="text" class="form-control" id="amount" name="amount" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Imisanzu</button>
+        </form>
+
+
+
+        <!-- Print Button -->
+        <button class="btn btn-info mb-3" onclick="printTable()">Print Table</button>
 
         <!-- Imisanzu Table -->
         <table class="table">
@@ -25,7 +37,6 @@
                 <th>Amount</th>
                 <th>Imisanzu Date</th>
                 <th>Motari</th>
-                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -34,7 +45,7 @@
                 <td th:text="${imisanzu.imisanzuId}"></td>
                 <td th:text="${imisanzu.amount}"></td>
                 <td th:text="${imisanzu.imisanzuDate}"></td>
-                <td th:text="${imisanzu.motari.firstName +''+imisanzu.motari.lastName}"></td>
+                <td th:text="${imisanzu.motari.firstName + ' ' + imisanzu.motari.lastName}"></td>
             </tr>
             </tbody>
         </table>
@@ -51,6 +62,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<script>
+    function printTable() {
+        window.print();
+    }
+</script>
 
 </body>
 </html>

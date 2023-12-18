@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ImisanzuDao extends JpaRepository<Imisanzu,Integer> {
 
-    @Query("from User where motari.motariId=:id")
+    @Query("from Imisanzu where motari.motariId=:id")
     List<Imisanzu> findIminzuByMotari(Integer id);
 }

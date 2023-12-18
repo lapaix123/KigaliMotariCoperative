@@ -2,9 +2,11 @@ package com.auca.kigalimotaricoperative.Controller;
 
 import com.auca.kigalimotaricoperative.model.Admin;
 import com.auca.kigalimotaricoperative.model.Imisanzu;
+import com.auca.kigalimotaricoperative.model.Motari;
 import com.auca.kigalimotaricoperative.model.User;
 import com.auca.kigalimotaricoperative.service.AdminService;
 import com.auca.kigalimotaricoperative.service.ImisanzuService;
+import com.auca.kigalimotaricoperative.service.MotariService;
 import com.auca.kigalimotaricoperative.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private MotariService motariService;
     @Autowired
     private AdminService adminService;
     @Autowired
@@ -48,13 +51,18 @@ public class LoginController {
         } else if ("motari".equalsIgnoreCase(userType)) {
             Optional<User> motari = userService.loginMotari(email, password);
             if (motari.isPresent()) {
-
                 session.setAttribute("motari", motari.get());
+                session.setAttribute("motari", email);
+
+                Motari motari1= motariService.findByEmail(email);
                 Imisanzu imisanzu = new Imisanzu();
-                List<Imisanzu> imisanzus = imisanzuService.findImisanzuByMotari(motari.get().getMotari().getMotariId());
-                model.addAttribute("imisanzu", imisanzu);
-                model.addAttribute("imisanzus", imisanzus);
-                return "redirect:/motariHomePage"; // Redirect to the motari home page
+                List<Imisanzu> imisanzus = imisanzuService.findImisanzuByMotari(motari1.getMotariId());
+                if(imisanzus != null) {
+                    model.addAttribute("imisanzu", imisanzu);
+                    model.addAttribute("imisanzus", imisanzus);
+                }
+
+                return "motariHomePage"; // Redirect to the motari home page
             } else {
                 // Handle invalid motari credentials
                 model.addAttribute("error", "Invalid Motari credentials");

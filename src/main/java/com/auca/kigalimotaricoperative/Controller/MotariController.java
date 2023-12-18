@@ -1,8 +1,10 @@
 package com.auca.kigalimotaricoperative.Controller;
 
 import com.auca.kigalimotaricoperative.model.Admin;
+import com.auca.kigalimotaricoperative.model.Imisanzu;
 import com.auca.kigalimotaricoperative.model.Motari;
 import com.auca.kigalimotaricoperative.model.User;
+import com.auca.kigalimotaricoperative.service.ImisanzuService;
 import com.auca.kigalimotaricoperative.service.MotariService;
 import com.auca.kigalimotaricoperative.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -18,6 +20,8 @@ public class MotariController {
 
     @Autowired
     private MotariService motariService;
+    @Autowired
+    private ImisanzuService imisanzuService;
 
     @GetMapping("/motari")
     public String allMotaris(Model model, HttpSession session) {
@@ -116,6 +120,20 @@ public class MotariController {
 
 
     }
+    @GetMapping("/motariHomePage")
+    public String motariPage(Model model,HttpSession session){
+       String email=(String) session.getAttribute("email");
+        Motari motari1= motariService.findByEmail(email);
+        Imisanzu imisanzu = new Imisanzu();
+        List<Imisanzu> imisanzus = imisanzuService.findImisanzuByMotari(motari1.getMotariId());
+        if(imisanzus != null) {
+            model.addAttribute("imisanzu", imisanzu);
+            model.addAttribute("imisanzus", imisanzus);
+        }
+
+        return "motariHomePage";
+    }
+
 
 
 }
